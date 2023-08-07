@@ -8,8 +8,8 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input, Button, Textarea } from '@/components/ui';
-// import { useUploadThing } from '@/lib/uploadthing';
-// import { isBase64Image } from '@/lib/utils';
+import { isBase64Image } from '@/lib/utils';
+import { useUploadThing } from '@/lib/uploadthing';
 import { UserValidation } from '@/lib/validations/user';
 // import { updateUser } from '@/lib/actions/user.actions';
 
@@ -20,8 +20,8 @@ interface Props {
 
 const AccountProfile = ({ user, btnTitle }: Props) => {
   const router = useRouter(), pathname = usePathname();
-  // const { startUpload } = useUploadThing('media');
   const [files, setFiles] = useState<File[]>([]);
+  const { startUpload } = useUploadThing('media');
 
   const form = useForm<z.infer<typeof UserValidation>>({
     resolver: zodResolver(UserValidation),
@@ -34,14 +34,14 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
   });
 
   const onSubmit = async (values: z.infer<typeof UserValidation>) => {
-    // const blob = values.profile_photo;
+    const blob = values.profile_photo;
+    const hasImageChanged = isBase64Image(blob);
+    if (hasImageChanged) {
+      const imgResponse = await startUpload(files);
+      if (imgResponse && imgResponse[0].fileUrl) values.profile_photo = imgResponse[0].fileUrl;
+    }
 
-    // const hasImageChanged = isBase64Image(blob);
-    // if (hasImageChanged) {
-    //   const imgRes = await startUpload(files);
-    //   if (imgRes && imgRes[0].fileUrl)  values.profile_photo = imgRes[0].fileUrl;
-    // }
-
+    // TODO: Backend function to update user profile
     // await updateUser({
     //   name: values.name,
     //   path: pathname,
@@ -64,7 +64,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       setFiles(Array.from(e.target.files));
 
       if (!file.type.includes('image')) return;
-      
+
       fileReader.onload = async (event) => {
         const imageDataUrl = event.target?.result?.toString() || '';
         fieldChange(imageDataUrl);
