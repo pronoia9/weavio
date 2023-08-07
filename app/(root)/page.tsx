@@ -1,3 +1,7 @@
 export default function Home() {
-  return <main>Weavio</main>;
+  return (
+    <>
+      <h1 className='head-text text-left'>Home</h1>
+    </>
+  );
 }
