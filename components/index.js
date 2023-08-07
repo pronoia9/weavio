@@ -16,10 +16,10 @@ import Searchbar from './shared/Searchbar';
 import ThreadsTab from './shared/ThreadsTab';
 import Topbar from './shared/Topbar';
 
-import Button from './ui/button';
-import Form from './ui/form';
+import { Button, buttonVariants } from './ui/button';
+import { useFormField, Form, FormItem, FormLabel, FormControl, FormDescription, FormMessage, FormField } from './ui/form';
 import Input from './ui/input';
-import Label from './ui/label';
+import { Label } from './ui/label';
 import Menubar from './ui/menubar';
 import Select from './ui/select';
 import Tabs from './ui/tabs';
@@ -31,5 +31,5 @@ export {
   CommunityCard, ThreadCard, UserCard,
   AccountProfile, Comment, DeleteThread, PostThread,
   Bottombar, LeftSidebar, Pagination, ProfileHeader, RightSidebar, Searchbar, ThreadsTab, Topbar,
-  Button, Form, Input, Label, Menubar, Select, Tabs, Textarea, Toast, Toaster,
+  Button, buttonVariants, useFormField, Form, FormItem, FormLabel, FormControl, FormDescription, FormMessage, FormField, Input, Label, Menubar, Select, Tabs, Textarea, Toast, Toaster,
 };
