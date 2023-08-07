@@ -14,7 +14,7 @@ import { UserValidation } from '@/lib/validations/user';
 // import { updateUser } from '@/lib/actions/user.actions';
 
 interface Props {
-  // user: { id: string; objectId: string; username: string; name: string; bio: string; image: string };
+  user: { id: string; objectId: string; username: string; name: string; bio: string; image: string };
   btnTitle: string;
 }
 
@@ -56,7 +56,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
   };
 
   const handleImage = (e: ChangeEvent<HTMLInputElement>, fieldChange: (value: string) => void) => {
-    // e.preventDefault();
+    e.preventDefault();
     
     // const fileReader = new FileReader();
 
