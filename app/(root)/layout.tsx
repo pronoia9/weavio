@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
 
-import { LeftSidebar, Bottombar, RightSidebar, Topbar } from '@/components/';
+import { LeftSidebar, Bottombar, RightSidebar, Topbar } from '@/components/shared';
 
 const inter = Inter({ subsets: ['latin'] });
 
