@@ -78,17 +78,13 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
   return (
     <Form {...form}>
       <form className='flex flex-col justify-start gap-10' onSubmit={form.handleSubmit(onSubmit)}>
-        {/* <FormField
+        <FormField
           control={form.control}
           name='profile_photo'
           render={({ field }) => (
             <FormItem className='flex items-center gap-4'>
               <FormLabel className='account-form_image-label'>
-                {field.value ? (
-                  <Image src={field.value} alt='profile_icon' width={96} height={96} priority className='rounded-full object-contain' />
-                ) : (
-                  <Image src='/assets/profile.svg' alt='profile_icon' width={24} height={24} className='object-contain' />
-                )}
+                <Image alt='profile_icon' {...(field.value ? { src: field.value, width: 96, height: 96 } : { src: '/assets/profile.svg', width: 24, height: 24 })} priority className='rounded-full object-contain' />
               </FormLabel>
               <FormControl className='flex-1 text-base-semibold text-gray-200'>
                 <Input
@@ -101,9 +97,9 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
               </FormControl>
             </FormItem>
           )}
-        /> */}
+        />
 
-        {/* <FormField
+        <FormField
           control={form.control}
           name='name'
           render={({ field }) => (
@@ -115,7 +111,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
               <FormMessage />
             </FormItem>
           )}
-        /> */}
+        />
 
         <FormField
           control={form.control}
@@ -131,7 +127,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
           )}
         />
 
-        {/* <FormField
+        <FormField
           control={form.control}
           name='bio'
           render={({ field }) => (
@@ -143,7 +139,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
               <FormMessage />
             </FormItem>
           )}
-        /> */}
+        />
 
         <Button type='submit' className='bg-primary-500'>
           {btnTitle}
