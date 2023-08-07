@@ -19,10 +19,8 @@ export function formatDateString(dateString: string) {
     month: 'short',
     day: 'numeric',
   };
-
   const date = new Date(dateString);
   const formattedDate = date.toLocaleDateString(undefined, options);
-
   const time = date.toLocaleTimeString([], {
     hour: 'numeric',
     minute: '2-digit',
@@ -33,9 +31,8 @@ export function formatDateString(dateString: string) {
 
 // created by chatgpt
 export function formatThreadCount(count: number): string {
-  if (count === 0) {
-    return 'No Threads';
-  } else {
+  if (count === 0) return 'No Threads';
+  else {
     const threadCount = count.toString().padStart(2, '0');
     const threadWord = count === 1 ? 'Thread' : 'Threads';
     return `${threadCount} ${threadWord}`;
