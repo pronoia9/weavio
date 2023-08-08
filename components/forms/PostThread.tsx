@@ -9,7 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Button, Textarea } from '@/components/ui';
 
 import { ThreadValidation } from '@/lib/validations/thread';
-// import { createThread } from '@/lib/actions/thread.actions';
+import { createThread } from '@/lib/actions/thread.actions';
 
 interface Props {
   userId: string;
@@ -29,13 +29,13 @@ const PostThread = ({ userId }: Props) => {
   });
 
   const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
-    // await createThread({
-    //   text: values.thread,
-    //   author: userId,
-    //   communityId: organization ? organization.id : null,
-    //   path: pathname,
-    // });
-    // router.push('/');
+    await createThread({
+      author: userId,
+      text: values.thread,
+      communityId: organization ? organization.id : null,
+      path: pathname,
+    });
+    router.push('/');
   };
   
   return (
