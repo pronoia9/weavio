@@ -2,13 +2,13 @@ import { currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
 import { AccountProfile } from '@/components/forms';
-// import { fetchUser } from '@/lib/actions/user.actions';
+import { fetchUser } from '@/lib/actions/user.actions';
 
 async function Page() {
   const user = await currentUser();
   if (!user) return null; // to avoid typescript warnings
 
-  const userInfo = {}; // await fetchUser(user.id);
+  const userInfo = await fetchUser(user.id);
   if (userInfo?.onboarded) redirect('/');
   
   const userData = {
