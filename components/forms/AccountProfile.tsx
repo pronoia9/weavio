@@ -11,7 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input, 
 import { isBase64Image } from '@/lib/utils';
 import { useUploadThing } from '@/lib/uploadthing';
 import { UserValidation } from '@/lib/validations/user';
-// import { updateUser } from '@/lib/actions/user.actions';
+import { updateUser } from '@/lib/actions/user.actions';
 
 interface Props {
   user: { id: string; objectId: string; username: string; name: string; bio: string; image: string };
@@ -40,19 +40,18 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       const imgResponse = await startUpload(files);
       if (imgResponse && imgResponse[0].fileUrl) values.profile_photo = imgResponse[0].fileUrl;
     }
+    
+    await updateUser({
+      userId: user.id,
+      image: values.profile_photo,
+      name: values.name,
+      username: values.username,
+      bio: values.bio,
+      path: pathname,
+    });
 
-    // TODO: Backend function to update user profile
-    // await updateUser({
-    //   name: values.name,
-    //   path: pathname,
-    //   username: values.username,
-    //   userId: user.id,
-    //   bio: values.bio,
-    //   image: values.profile_photo,
-    // });
-
-    // if (pathname === '/profile/edit') router.back();
-    // else router.push('/');
+    if (pathname === '/profile/edit') router.back();
+    else router.push('/');
   };
 
   const handleImage = (e: ChangeEvent<HTMLInputElement>, fieldChange: (value: string) => void) => {
