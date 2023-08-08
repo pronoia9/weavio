@@ -25,7 +25,6 @@ const ThreadCard = ({ id, currentUserId, parentId, content, author, community, c
             <Link href={`/profile/${author.id}`} className='relative h-11 w-11'>
               <Image src={author.image} alt='user_community_image' fill className='cursor-pointer rounded-full' />
             </Link>
-
             <div className='thread-card_bar' />
           </div>
 
