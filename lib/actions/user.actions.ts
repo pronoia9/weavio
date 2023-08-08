@@ -1,20 +1,24 @@
 'use server';
 
+import { FilterQuery, SortOrder } from 'mongoose';
 import { revalidatePath } from 'next/cache';
 
 import User from '@/lib/models/user.model';
+import Thread from '@/lib/models/thread.model';
+import Community from '@/lib/models/community.model';
+
 import { connectToDB } from '../mongoose';
 
 interface Params {
   userId: string;
-  username: string;
-  name: string;
-  bio: string;
   image: string;
+  name: string;
+  username: string;
+  bio: string;
   path: string;
 }
 
-export async function updateUser({ userId, bio, name, path, username, image }: Params): Promise<void> {
+export async function updateUser({ userId, image, name, username, bio, path }: Params): Promise<void> {
   try {
     connectToDB();
     await User.findOneAndUpdate(
