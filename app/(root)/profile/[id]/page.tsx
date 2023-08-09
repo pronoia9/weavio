@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import Image from 'next/image';
-import { currentUser } from '@clerk/nextjs';
+import { UserProfile, currentUser } from '@clerk/nextjs';
 
 import { profileTabs } from '@/constants';
 import { ThreadsTab, ProfileHeader } from '@/components/shared';
@@ -23,6 +23,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
         imgUrl={userInfo.image}
         bio={userInfo.bio}
       />
+      <UserProfile />
     </section>
   );
 };
