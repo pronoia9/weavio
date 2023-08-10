@@ -9,7 +9,7 @@ interface Props {
   currentUserId: string;
   parentId: string | null;
   content: string;
-  author: { name: string; image: string; id: string };
+  author: { name: string; image: string; id: string; username: string };
   community: { id: string; name: string; image: string } | null;
   createdAt: string;
   comments: { author: { image: string } }[];
@@ -30,7 +30,15 @@ const ThreadCard = ({ id, currentUserId, parentId, content, author, community, c
 
           <div className='flex w-full flex-col'>
             <Link href={`/profile/${author.id}`} className='w-fit'>
-              <h4 className='cursor-pointer text-base-semibold text-light-1'>{author.name}</h4>
+              <h4 className='cursor-pointer text-base-semibold text-light-1'>
+                {author.name}
+                {author.username && (
+                  <>
+                    &nbsp;&nbsp;
+                    <span className='text-light-3 text-small-regular text-opacity-80'>@{author.username}</span>
+                  </>
+                )}
+              </h4>
             </Link>
 
             <p className='mt-2 text-small-regular text-light-2'>{content}</p>
