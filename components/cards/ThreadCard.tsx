@@ -35,7 +35,7 @@ const ThreadCard = ({ id, currentUserId, parentId, content, author, community, c
                 {author.username && (
                   <>
                     &nbsp;&nbsp;
-                    <span className='text-light-3 text-small-regular text-opacity-80'>@{author.username}</span>
+                    <span className='text-gray-1 text-small-regular'>@{author.username}</span>
                   </>
                 )}
               </h4>
