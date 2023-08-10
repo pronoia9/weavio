@@ -76,7 +76,7 @@ const ThreadCard = ({ id, currentUserId, parentId, content, author, community, c
               alt={`user_${index}`}
               width={24}
               height={24}
-              className={`${index !== 0 && '-ml-5'} rounded-full object-cover`}
+              className={`${index !== 0 ? '-ml-4 ' : ''}rounded-full object-cover w-5 h-5`}
             />
           ))}
 
