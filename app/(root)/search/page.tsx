@@ -22,6 +22,7 @@ async function Page({ searchParams }: { searchParams: { [key: string]: string | 
     <section>
       <h1 className='head-text mb-10'>Search</h1>
 
+      {/* @ts-ignore */}
       <Searchbar routeType='search' />
 
       <div className='mt-14 flex flex-col gap-9'>
@@ -36,6 +37,7 @@ async function Page({ searchParams }: { searchParams: { [key: string]: string | 
         )}
       </div>
 
+      {/* @ts-ignore */}
       <Pagination path='search' pageNumber={searchParams?.page ? +searchParams.page : 1} isNext={result.isNext} />
     </section>
   );
