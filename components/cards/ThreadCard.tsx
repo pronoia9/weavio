@@ -64,6 +64,7 @@ const ThreadCard = ({ id, currentUserId, parentId, content, author, community, c
           </div>
         </div>
 
+        {/* @ts-ignore */}
         <DeleteThread threadId={JSON.stringify(id)} currentUserId={currentUserId} authorId={author.id} parentId={parentId} isComment={isComment} />
       </div>
 
