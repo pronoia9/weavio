@@ -29,11 +29,9 @@ async function Page({ searchParams }: { searchParams: { [key: string]: string | 
         {result.users.length === 0 ? (
           <p className='no-result'>No Result</p>
         ) : (
-          <>
-            {result.users.map((person) => (
-              <UserCard key={person.id} id={person.id} name={person.name} username={person.username} imgUrl={person.image} personType='User' />
-            ))}
-          </>
+          result.users.map((person) => (
+            <UserCard key={person.id} id={person.id} name={person.name} username={person.username} imgUrl={person.image} personType='User' />
+          ))
         )}
       </div>
 
