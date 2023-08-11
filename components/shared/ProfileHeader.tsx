@@ -35,7 +35,7 @@ function ProfileHeader({ accountId, authUserId, name, username, imgUrl, bio, typ
         )}
       </div>
 
-      <p className='mt-6 max-w-lg text-base-regular text-light-2'>{bio}</p>
+      {type !== 'Community' && <p className='mt-6 max-w-lg text-base-regular text-light-2'>{bio}</p>}
 
       <div className='mt-12 h-0.5 w-full bg-dark-3' />
     </div>
