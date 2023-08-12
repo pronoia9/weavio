@@ -127,9 +127,7 @@ export async function fetchCommunities({
     const query: FilterQuery<typeof Community> = {};
 
     // If the search string is not empty, add the $or operator to match either username or name fields.
-    if (searchString.trim() !== '') {
-      query.$or = [{ username: { $regex: regex } }, { name: { $regex: regex } }];
-    }
+    if (searchString.trim() !== '') query.$or = [{ username: { $regex: regex } }, { name: { $regex: regex } }];
 
     // Define the sort options for the fetched communities based on createdAt field and provided sort order.
     const sortOptions = { createdAt: sortBy };
