@@ -95,10 +95,7 @@ export async function deleteThread(id: string, path: string): Promise<void> {
 
     // Find the thread to be deleted (the main thread)
     const mainThread = await Thread.findById(id).populate('author community');
-
-    if (!mainThread) {
-      throw new Error('Thread not found');
-    }
+    if (!mainThread) throw new Error('Thread not found');
 
     // Fetch all child threads and their descendants recursively
     const descendantThreads = await fetchAllChildThreads(id);
