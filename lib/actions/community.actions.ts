@@ -153,13 +153,13 @@ export async function fetchCommunities({
 // TODO
 export async function fetchSuggestedCommunities({
   searchString = '',
-  userFilter = '',
+  userId = '',
   pageNumber = 1,
   pageSize = 20,
   sortBy = 'desc',
 }: {
   searchString?: string;
-  userFilter?: string;
+  userId?: string;
   pageNumber?: number;
   pageSize?: number;
   sortBy?: SortOrder;
@@ -174,15 +174,7 @@ export async function fetchSuggestedCommunities({
     const regex = new RegExp(searchString, 'i');
 
     // Create an initial query object to filter communities.
-    // TODO
-    const query: FilterQuery<typeof Community> = {
-      // members: { $elemMatch: { id: { $ne: userMemberOf } } },
-      // 'members.id': { $nin: [userMemberOf] },
-      // members: { $not: { $elemMatch: { id: userMemberOf } } },
-      // 'members.id': { $ne: userMemberOf },
-      // members: { $nin: [userMemberOf] },
-      members: { $not: { $elemMatch: { id: userFilter } } },
-    };
+    const query: FilterQuery<typeof Community> = {};
 
     // If the search string is not empty, add the $or operator to match either username or name fields.
     if (searchString.trim() !== '') query.$or = [{ username: { $regex: regex } }, { name: { $regex: regex } }];
@@ -196,7 +188,8 @@ export async function fetchSuggestedCommunities({
     // Count the total number of communities that match the search criteria (without pagination).
     const totalCommunitiesCount = await Community.countDocuments(query);
 
-    const communities = await communitiesQuery.exec();
+    let communities = await communitiesQuery.exec();
+    communities = communities.filter((com) => !com.members.find((mem: any) => mem.id === userId));
 
     // Check if there are more communities beyond the current page.
     const isNext = totalCommunitiesCount > skipAmount + communities.length;
